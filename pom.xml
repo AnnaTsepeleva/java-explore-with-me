@@ -14,7 +14,8 @@
     <modules>
 		<module>statistics</module>
 		<module>utils</module>
-	</modules>
+        <module>main</module>
+    </modules>
 
     <groupId>ru.practicum</groupId>
 	<artifactId>explore-with-me</artifactId>

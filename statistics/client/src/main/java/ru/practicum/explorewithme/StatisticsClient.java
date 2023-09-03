@@ -4,11 +4,7 @@ import org.jetbrains.annotations.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.web.client.RestTemplateBuilder;
-import org.springframework.http.HttpEntity;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpMethod;
-import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
+import org.springframework.http.*;
 import org.springframework.http.client.HttpComponentsClientHttpRequestFactory;
 import org.springframework.lang.Nullable;
 import org.springframework.stereotype.Service;
@@ -23,15 +19,15 @@ import java.util.Map;
 import static ru.practicum.explorewithme.constant.Constants.DATE_TIME_FORMATTER;
 
 @Service
-public class StatClientService {
-    private final RestTemplate restTemplate;
+public class StatisticsClient {
+    private final RestTemplate rest;
 
     @Autowired
-    public StatClientService(@Value("${statistics.server.address}")String serverUrl, RestTemplateBuilder builder) {
-        restTemplate = builder
-                .uriTemplateHandler(new DefaultUriBuilderFactory(serverUrl))
-                .requestFactory(HttpComponentsClientHttpRequestFactory::new)
-                .build();
+    public StatisticsClient(@Value("${statistics.server.address}")String serverUrl, RestTemplateBuilder builder) {
+         rest = builder
+                        .uriTemplateHandler(new DefaultUriBuilderFactory(serverUrl))
+                        .requestFactory(HttpComponentsClientHttpRequestFactory::new)
+                        .build();
     }
 
     public ResponseEntity<Object> postHit(RequestHitDto hitDto) {
@@ -80,9 +76,9 @@ public class StatClientService {
         ResponseEntity<Object> serverResponse;
         try {
             if (parameters != null) {
-                serverResponse = restTemplate.exchange(path, method, requestEntity, Object.class, parameters);
+                serverResponse = rest.exchange(path, method, requestEntity, Object.class, parameters);
             } else {
-                serverResponse = restTemplate.exchange(path, method, requestEntity, Object.class);
+                serverResponse = rest.exchange(path, method, requestEntity, Object.class);
             }
         } catch (HttpStatusCodeException e) {
             return ResponseEntity.status(e.getStatusCode()).body(e.getResponseBodyAsByteArray());
