@@ -1,7 +1,7 @@
 version: '3.1'
 services:
   main:
-    build: main-service
+    build: main
     container_name: ewm-stats-main
     ports:
       - "8080:8080"
