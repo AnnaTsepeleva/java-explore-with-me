@@ -8,7 +8,6 @@
         <artifactId>explore-with-me</artifactId>
         <version>0.0.1-SNAPSHOT</version>
     </parent>
-
     <artifactId>statistics</artifactId>
     <packaging>pom</packaging>
     <modules>
