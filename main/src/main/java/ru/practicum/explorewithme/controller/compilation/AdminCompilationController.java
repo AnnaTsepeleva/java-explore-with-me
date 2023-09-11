@@ -4,9 +4,9 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
-import ru.practicum.explorewithme.dto.compilation.CompilationDto;
-import ru.practicum.explorewithme.dto.compilation.NewCompilationDto;
-import ru.practicum.explorewithme.dto.request.UpdateCompilationRequest;
+import ru.practicum.explorewithme.dtomain.compilation.CompilationDto;
+import ru.practicum.explorewithme.dtomain.compilation.NewCompilationDto;
+import ru.practicum.explorewithme.dtomain.request.UpdateCompilationRequest;
 import ru.practicum.explorewithme.log.ToLog;
 import ru.practicum.explorewithme.service.CompilationService;
 

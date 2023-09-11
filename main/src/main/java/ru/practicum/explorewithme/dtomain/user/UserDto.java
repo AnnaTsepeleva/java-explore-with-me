@@ -1,4 +1,4 @@
-package ru.practicum.explorewithme.dto.user;
+package ru.practicum.explorewithme.dtomain.user;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -9,7 +9,8 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder(toBuilder = true)
-public class UserShortDto {
+public class UserDto {
     private Long id;
     private String name;
+    private String email;
 }

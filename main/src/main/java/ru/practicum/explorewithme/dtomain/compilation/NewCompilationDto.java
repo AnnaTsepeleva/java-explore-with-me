@@ -1,4 +1,4 @@
-package ru.practicum.explorewithme.dto.user;
+package ru.practicum.explorewithme.dtomain.compilation;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -6,21 +6,20 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.validator.constraints.Length;
 
-import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
+import java.util.Set;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder(toBuilder = true)
-public class NewUserRequestDto {
+public class NewCompilationDto {
 
-    @NotBlank
-    @Length(min = 2, max = 250)
-    private String name;
+    private Set<Long> events;
 
+    private boolean pinned;
+
+    @Length(min = 1, max = 50)
     @NotBlank
-    @Email
-    @Length(min = 6, max = 254)
-    private String email;
+    private String title;
 }

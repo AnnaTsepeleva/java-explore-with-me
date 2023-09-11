@@ -1,9 +1,9 @@
 package ru.practicum.explorewithme.service;
 
 import org.springframework.data.domain.Pageable;
-import ru.practicum.explorewithme.dto.compilation.CompilationDto;
-import ru.practicum.explorewithme.dto.compilation.NewCompilationDto;
-import ru.practicum.explorewithme.dto.request.UpdateCompilationRequest;
+import ru.practicum.explorewithme.dtomain.compilation.CompilationDto;
+import ru.practicum.explorewithme.dtomain.compilation.NewCompilationDto;
+import ru.practicum.explorewithme.dtomain.request.UpdateCompilationRequest;
 
 import java.util.Collection;
 

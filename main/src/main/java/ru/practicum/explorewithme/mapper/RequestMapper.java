@@ -2,7 +2,7 @@ package ru.practicum.explorewithme.mapper;
 
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
-import ru.practicum.explorewithme.dto.request.ParticipationRequestDto;
+import ru.practicum.explorewithme.dtomain.request.ParticipationRequestDto;
 import ru.practicum.explorewithme.model.Request;
 
 @Mapper(componentModel = "spring", uses = {EventMapper.class})

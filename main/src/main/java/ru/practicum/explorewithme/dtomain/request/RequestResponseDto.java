@@ -1,11 +1,11 @@
-package ru.practicum.explorewithme.dto.request;
+package ru.practicum.explorewithme.dtomain.request;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import ru.practicum.explorewithme.dto.event.EventFullDto;
+import ru.practicum.explorewithme.dtomain.event.EventFullDto;
 import ru.practicum.explorewithme.model.enums.EventStatus;
 
 import java.time.LocalDateTime;

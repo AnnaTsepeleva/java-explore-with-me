@@ -1,10 +1,10 @@
-package ru.practicum.explorewithme.dto.request;
+package ru.practicum.explorewithme.dtomain.compilation;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.hibernate.validator.constraints.Length;
+import ru.practicum.explorewithme.dtomain.event.EventShortDto;
 
 import java.util.Set;
 
@@ -12,10 +12,9 @@ import java.util.Set;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder(toBuilder = true)
-public class UpdateCompilationRequest {
-    private Set<Long> events;
+public class CompilationDto {
+    private Set<EventShortDto> events;
+    private Long id;
     private Boolean pinned;
-
-    @Length(min = 1, max = 50)
     private String title;
 }

@@ -2,8 +2,8 @@ package ru.practicum.explorewithme.mapper;
 
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
-import ru.practicum.explorewithme.dto.compilation.CompilationDto;
-import ru.practicum.explorewithme.dto.compilation.NewCompilationDto;
+import ru.practicum.explorewithme.dtomain.compilation.CompilationDto;
+import ru.practicum.explorewithme.dtomain.compilation.NewCompilationDto;
 import ru.practicum.explorewithme.model.Compilation;
 import ru.practicum.explorewithme.model.Event;
 

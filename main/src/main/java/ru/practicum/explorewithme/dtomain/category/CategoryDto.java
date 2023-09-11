@@ -1,4 +1,4 @@
-package ru.practicum.explorewithme.dto.compilation;
+package ru.practicum.explorewithme.dtomain.category;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -7,19 +7,15 @@ import lombok.NoArgsConstructor;
 import org.hibernate.validator.constraints.Length;
 
 import javax.validation.constraints.NotBlank;
-import java.util.Set;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder(toBuilder = true)
-public class NewCompilationDto {
+public class CategoryDto {
+    private Long id;
 
-    private Set<Long> events;
-
-    private boolean pinned;
-
-    @Length(min = 1, max = 50)
     @NotBlank
-    private String title;
+    @Length(min = 1, max = 50)
+    private String name;
 }

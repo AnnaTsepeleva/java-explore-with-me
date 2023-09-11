@@ -4,7 +4,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Pageable;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
-import ru.practicum.explorewithme.dto.compilation.CompilationDto;
+import ru.practicum.explorewithme.dtomain.compilation.CompilationDto;
 import ru.practicum.explorewithme.log.ToLog;
 import ru.practicum.explorewithme.service.CompilationService;
 import ru.practicum.explorewithme.util.OffsetBasedPageRequest;

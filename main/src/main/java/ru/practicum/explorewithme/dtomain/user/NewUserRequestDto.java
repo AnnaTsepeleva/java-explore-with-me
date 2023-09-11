@@ -1,4 +1,4 @@
-package ru.practicum.explorewithme.dto.category;
+package ru.practicum.explorewithme.dtomain.user;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -6,16 +6,21 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.validator.constraints.Length;
 
+import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder(toBuilder = true)
-public class CategoryDto {
-    private Long id;
+public class NewUserRequestDto {
 
     @NotBlank
-    @Length(min = 1, max = 50)
+    @Length(min = 2, max = 250)
     private String name;
+
+    @NotBlank
+    @Email
+    @Length(min = 6, max = 254)
+    private String email;
 }

@@ -1,4 +1,4 @@
-package ru.practicum.explorewithme.dto.category;
+package ru.practicum.explorewithme.dtomain.category;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

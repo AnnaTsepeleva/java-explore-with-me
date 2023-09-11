@@ -1,10 +1,10 @@
 package ru.practicum.explorewithme.service;
 
 import org.springframework.data.domain.Pageable;
-import ru.practicum.explorewithme.dto.event.EventFullDto;
-import ru.practicum.explorewithme.dto.event.EventShortDto;
-import ru.practicum.explorewithme.dto.event.NewEventDto;
-import ru.practicum.explorewithme.dto.request.*;
+import ru.practicum.explorewithme.dtomain.event.EventFullDto;
+import ru.practicum.explorewithme.dtomain.event.EventShortDto;
+import ru.practicum.explorewithme.dtomain.event.NewEventDto;
+import ru.practicum.explorewithme.dtomain.request.*;
 import ru.practicum.explorewithme.model.enums.EventSort;
 import ru.practicum.explorewithme.model.enums.EventStatus;
 
