@@ -24,7 +24,7 @@ import static ru.practicum.explorewithme.constant.Constants.DATE_TIME_FORMATTER;
 @RequiredArgsConstructor
 public class StatisticsClient {
 
-    @Value("${stats-server.url}")
+    @Value("${statistics.server.address}")
     private String serverUrl;
 
 
