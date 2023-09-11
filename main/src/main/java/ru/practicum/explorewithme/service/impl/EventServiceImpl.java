@@ -21,9 +21,10 @@ import ru.practicum.explorewithme.model.enums.EventStatus;
 import ru.practicum.explorewithme.model.enums.RequestStatus;
 import ru.practicum.explorewithme.repository.*;
 import ru.practicum.explorewithme.service.EventService;
-import ru.practicum.explorewithme.StatisticsClient;
 import ru.practicum.explorewithme.RequestHitDto;
 import ru.practicum.explorewithme.ResponseHitDto;
+import ru.practicum.explorewithme.stats.StatisticsClient;
+
 
 import javax.servlet.http.HttpServletRequest;
 import java.time.LocalDateTime;
