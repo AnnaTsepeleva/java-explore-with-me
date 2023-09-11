@@ -7,10 +7,7 @@ services:
       - "8080:8080"
     depends_on:
       [ statistics-server ]
-
-
     environment:
-      - STAT_CLIENT_PORT=8080
       - STAT_SERVER_ADDRESS=http://statistics-server:9090
       - SPRING_DATASOURCE_URL=jdbc:postgresql://ewm-db:5432/mainservicedb
       - POSTGRES_USER=root
