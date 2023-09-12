@@ -14,7 +14,7 @@ services:
       DB_NAME: ewmstatistics
       POSTGRES_USER: root
       POSTGRES_PASSWORD: root
-      SPRING_DATASOURCE_URL: jdbc:postgresql://stats-db:5432/ewmstatistics
+      SPRING_DATASOURCE_URL2: jdbc:postgresql://stats-db:5432/ewmstatistics
 
   statistics-db:
     image: postgres:13.7-alpine
@@ -36,7 +36,7 @@ services:
       [ ewm-db ]
     environment:
       STAT_SERVER_ADDRESS: http://statistics-server:9090
-      SPRING_DATASOURCEMAIN_URL: jdbc:postgresql://ewm-db:5432/mainservicedb
+      SPRING_DATASOURCE_URL: jdbc:postgresql://ewm-db:5432/mainservicedb
       POSTGRES_USER: root
       POSTGRES_PASSWORD: root
 
