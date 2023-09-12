@@ -14,7 +14,7 @@ services:
       DB_NAME: ewmstatistics
       POSTGRES_USER: root
       POSTGRES_PASSWORD: root
-      PRING_DATASOURCE_URL: jdbc:postgresql://stats-db:5432/ewmstatistics
+      SPRING_DATASOURCE_URL: jdbc:postgresql://stats-db:5432/ewmstatistics
 
   statistics-db:
     image: postgres:13.7-alpine
