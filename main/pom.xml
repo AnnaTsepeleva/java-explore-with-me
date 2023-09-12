@@ -10,18 +10,16 @@
     </parent>
 
     <groupId>ru.practicum.explorewithme</groupId>
-    <artifactId>main</artifactId>
+    <artifactId>main-service</artifactId>
+    <packaging>jar</packaging>
+
+    <name>main-service</name>
+    <url>http://maven.apache.org</url>
 
     <properties>
-        <maven.compiler.source>11</maven.compiler.source>
-        <maven.compiler.target>11</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
     <dependencies>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-autoconfigure</artifactId>
-        </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
