@@ -10,10 +10,10 @@
     </parent>
 
     <groupId>ru.practicum.explorewithme</groupId>
-    <artifactId>main-service</artifactId>
+    <artifactId>main</artifactId>
     <packaging>jar</packaging>
 
-    <name>main-service</name>
+    <name>main</name>
     <url>http://maven.apache.org</url>
 
     <properties>
