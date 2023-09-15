@@ -10,7 +10,6 @@ public interface RequestMapper {
 
     @Mapping(target = "event", source = "event.id")
     @Mapping(target = "requester", source = "requester.id")
-    @Mapping(target = "status", expression = "java(mapEventRequestStatus(request))")
     ParticipationRequestDto toParticipationRequestDto(Request request);
 
 }
