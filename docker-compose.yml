@@ -11,17 +11,18 @@ services:
     environment:
       - POSTGRES_USER=root
       - POSTGRES_PASSWORD=root
-      - SPRING_DATASOURCE_URL=jdbc:postgresql://stats-db:5432/stats
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://statsdb:5432/stats
 
   stats-db:
     image: postgres:14-alpine
-    container_name: stats-db
+    container_name: statsdb
     ports:
       - "6545:5432"
     environment:
       - POSTGRES_DB=stats
       - POSTGRES_USER=root
       - POSTGRES_PASSWORD=root
+    hostname: statsdb
 
   ewm-service:
     build: main
@@ -33,24 +34,19 @@ services:
       - ewm-db
     environment:
       - STATS_SERVER_URL=http://stats-server:9090
-      - SPRING_DATASOURCE_URL=jdbc:postgresql://ewm-db:5432/mainservicedb
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://ewmmaindb:5432/mainservicedb
       - POSTGRES_USER=root
       - POSTGRES_PASSWORD=root
-      - DB_HOST=ewm-db
-      - DB_PORT=5432
-      - DB_NAME=mainservicedb
+
 
 
   ewm-db:
     image: postgres:14-alpine
-    container_name: ewm-db
+    container_name: ewmmaindb
     ports:
       - "6543:5432"
     environment:
       - POSTGRES_DB=mainservicedb
       - POSTGRES_USER=root
       - POSTGRES_PASSWORD=root
-      - DB_HOST=ewm-db
-      - DB_PORT=5432
-      - DB_NAME=mainservicedb
-    hostname: emw-db
+    hostname: ewmmaindb
