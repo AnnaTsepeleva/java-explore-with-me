@@ -41,14 +41,9 @@ public class CategoryServiceImpl implements CategoryService {
 
     @Override
     public Category changeCategory(Long catId, Category category) {
-        Category updated = categoryRepository.findById(catId).orElseThrow(() ->
+        return categoryRepository.findById(catId).orElseThrow(() ->
                 new NotFoundException(String.format("Category %s not found", catId)));
 
-        if (category.getName() != null && !category.getName().isBlank()) {
-            updated.setName(category.getName());
-        }
-
-        return updated;
     }
 
     @Override
