@@ -52,8 +52,8 @@ public class RequestServiceImpl implements RequestService {
             throw new NotAvailableException("Cannot participate in an unpublished event");
         }
 
-        for (Request requests: requestRepository.findByRequesterId(userId)){
-            if (Objects.equals(requests.getEvent().getId(), eventId)){
+        for (Request requests: requestRepository.findByRequesterId(userId)) {
+            if (requests.getEvent().getId().equals(eventId)) {
                 throw new NotAvailableException("Request from you already exists.");
             }
         }
