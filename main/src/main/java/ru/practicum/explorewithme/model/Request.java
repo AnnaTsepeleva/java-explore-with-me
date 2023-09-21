@@ -7,8 +7,8 @@ import javax.persistence.*;
 import java.time.LocalDateTime;
 
 @Entity
-@Getter
 @Setter
+@Getter
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder(toBuilder = true)

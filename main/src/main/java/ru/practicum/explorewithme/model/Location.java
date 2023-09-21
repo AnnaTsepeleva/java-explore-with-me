@@ -5,8 +5,8 @@ import lombok.*;
 import javax.persistence.*;
 
 @Entity
-@Getter
 @Setter
+@Getter
 @AllArgsConstructor
 @NoArgsConstructor
 @Table(name = "locations")
