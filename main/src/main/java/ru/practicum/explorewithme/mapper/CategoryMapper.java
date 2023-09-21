@@ -11,7 +11,5 @@ import javax.validation.Valid;
 public interface CategoryMapper {
     Category toCategory(@Valid CategoryDto newCategoryDto);
 
-    Category toCategoryNew(@Valid NewCategoryDto newCategoryDto);
-
     CategoryDto toCategoryDto(Category category);
 }
