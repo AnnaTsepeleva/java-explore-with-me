@@ -54,7 +54,7 @@ public class RequestServiceImpl implements RequestService {
 
         for (Request requests: requestRepository.findByRequesterId(userId)){
             if (Objects.equals(requests.getEvent().getId(), eventId)){
-                throw new NotFoundException("Request from you already exists.");
+                throw new NotAvailableException("Request from you already exists.");
             }
         }
 
