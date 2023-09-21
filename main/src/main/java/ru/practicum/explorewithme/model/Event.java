@@ -10,7 +10,8 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder(toBuilder = true)
-@Data
+@Getter
+@Setter
 @Table(name = "events")
 public class Event {
 
