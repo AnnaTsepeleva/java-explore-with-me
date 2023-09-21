@@ -5,6 +5,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import ru.practicum.explorewithme.dtomain.category.CategoryDto;
+import ru.practicum.explorewithme.dtomain.category.NewCategoryDto;
 import ru.practicum.explorewithme.log.ToLog;
 import ru.practicum.explorewithme.mapper.CategoryMapper;
 import ru.practicum.explorewithme.model.Category;
@@ -25,8 +26,8 @@ public class AdminCategoryController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public CategoryDto saveCategory(@RequestBody @Valid CategoryDto dto) {
-        Category category = categoryService.saveCategory(categoryMapper.toCategory(dto));
+    public CategoryDto saveCategory(@RequestBody @Valid NewCategoryDto dto) {
+        Category category = categoryService.saveCategory(categoryMapper.toCategoryNew(dto));
         return categoryMapper.toCategoryDto(category);
     }
 
