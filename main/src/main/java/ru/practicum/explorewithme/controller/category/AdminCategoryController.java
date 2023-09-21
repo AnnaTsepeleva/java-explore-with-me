@@ -26,8 +26,8 @@ public class AdminCategoryController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public CategoryDto saveCategory(@RequestBody @Valid NewCategoryDto dto) {
-        Category category = categoryService.saveCategory(categoryMapper.toCategoryNew(dto));
+    public CategoryDto saveCategory(@RequestBody @Valid NewCategoryDto dtoNew) {
+        Category category = categoryService.saveCategory(categoryMapper.toCategoryNew(dtoNew));
         return categoryMapper.toCategoryDto(category);
     }
 
