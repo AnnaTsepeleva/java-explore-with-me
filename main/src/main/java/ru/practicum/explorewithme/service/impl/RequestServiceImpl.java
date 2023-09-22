@@ -44,17 +44,19 @@ public class RequestServiceImpl implements RequestService {
         Event event = eventRepository.findById(eventId).orElseThrow(() ->
                 new NotFoundException(String.format("Event %s not found", eventId)));
 
+        for (Request requests: requestRepository.findByRequesterId(userId)) {
+            if (requests.getEvent().getId() !=null) {
+                if (requests.getEvent().getId().equals(eventId)) {
+                    throw new NotAvailableException("Request from you already exists.");
+                }
+            }
+        }
+
         if (event.getInitiator().getId().equals(requester.getId())) {
             throw new NotAvailableException("Event initiator cannot add a request to participate in their event");
         }
         if (!event.getState().equals(EventStatus.PUBLISHED)) {
             throw new NotAvailableException("Cannot participate in an unpublished event");
-        }
-
-        for (Request requests: requestRepository.findByRequesterId(userId)) {
-            if (requests.getEvent().getId().equals(eventId)) {
-                throw new NotAvailableException("Request from you already exists.");
-            }
         }
 
         Long confirmedRequests = requestRepository.countAllByEventIdAndStatus(eventId,
