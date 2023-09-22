@@ -45,7 +45,7 @@ public class RequestServiceImpl implements RequestService {
                 new NotFoundException(String.format("Event %s not found", eventId)));
 
         for (Request requests: requestRepository.findByRequesterId(userId)) {
-            if (requests.getEvent().getId() !=null) {
+            if (requests.getEvent().getId() != null) {
                 if (requests.getEvent().getId().equals(eventId)) {
                     throw new NotAvailableException("Request from you already exists.");
                 }
