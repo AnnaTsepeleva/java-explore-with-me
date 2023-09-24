@@ -18,6 +18,7 @@ import ru.practicum.explorewithme.service.RequestService;
 
 import java.time.LocalDateTime;
 import java.util.Collection;
+import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -39,9 +40,8 @@ public class RequestServiceImpl implements RequestService {
     @Override
     public Request saveUserRequest(Long userId, Long eventId) {
 
-        if (!requestRepository.findAllByEventIdAndRequesterId(eventId, userId).isEmpty()) {
-            throw new NotAvailableException("Request from you already exists.");
-        }
+        requestRepository.findByEventIdAndRequesterId(eventId, userId).orElseThrow (()->
+                        new NotFoundException("Request from you already exists."));
 
         User requester = userRepository.findById(userId).orElseThrow(() ->
                 new NotFoundException(String.format("User %s not found", userId)));
