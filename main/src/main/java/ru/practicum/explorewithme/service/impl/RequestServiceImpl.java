@@ -3,6 +3,7 @@ package ru.practicum.explorewithme.service.impl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import ru.practicum.explorewithme.exceptions.AlreadyExistsException;
 import ru.practicum.explorewithme.exceptions.NotAvailableException;
 import ru.practicum.explorewithme.exceptions.NotFoundException;
 import ru.practicum.explorewithme.exceptions.ValidationException;
@@ -40,7 +41,7 @@ public class RequestServiceImpl implements RequestService {
     public Request saveUserRequest(Long userId, Long eventId) {
 
         if (requestRepository.existsByRequesterIdAndEventId(userId, eventId)) {
-            throw new NotAvailableException("Request from you already exists.");
+            throw new AlreadyExistsException("Request from you already exists.");
         }
 
         User requester = userRepository.findById(userId).orElseThrow(() ->
