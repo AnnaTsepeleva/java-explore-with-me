@@ -39,7 +39,7 @@ public class RequestServiceImpl implements RequestService {
     @Override
     public Request saveUserRequest(Long userId, Long eventId) {
 
-        if (!requestRepository.findByEventIdAndRequesterId(eventId, userId).isPresent()) {
+        if (requestRepository.existsByRequesterIdAndEventId(userId, eventId)) {
             throw new NotAvailableException("Request from you already exists.");
         }
 
