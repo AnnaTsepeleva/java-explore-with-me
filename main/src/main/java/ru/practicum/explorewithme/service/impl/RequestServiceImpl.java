@@ -39,8 +39,9 @@ public class RequestServiceImpl implements RequestService {
     @Override
     public Request saveUserRequest(Long userId, Long eventId) {
 
-        requestRepository.findByEventIdAndRequesterId(eventId, userId).orElseThrow(() ->
-                new NotAvailableException("Request from you already exists."));
+        if (!requestRepository.findByEventIdAndRequesterId(eventId, userId).isPresent()) {
+            throw new NotAvailableException("Request from you already exists.");
+        }
 
         User requester = userRepository.findById(userId).orElseThrow(() ->
                 new NotFoundException(String.format("User %s not found", userId)));
