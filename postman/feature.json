@@ -26,7 +26,7 @@
         "header": [],
         "body": {
           "mode": "raw",
-          "raw": "{\r\n    \"content\": \"text\"\r\n   \"eventId\": \"2\"\n}",
+          "raw": "{\r\n    \"content\": \"text\"\r\n,   \"eventId\": \"2\"\n}",
           "options": {
             "raw": {
               "language": "json"
