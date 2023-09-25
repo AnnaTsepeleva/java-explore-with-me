@@ -7,7 +7,6 @@ import org.springframework.web.bind.annotation.*;
 import ru.practicum.explorewithme.log.ToLog;
 import ru.practicum.explorewithme.service.CommentService;
 
-import javax.validation.constraints.Positive;
 
 @RestController
 @RequestMapping("/admin/comments")
@@ -17,9 +16,9 @@ import javax.validation.constraints.Positive;
 public class AdminCommentController {
     private final CommentService commentService;
 
-    @DeleteMapping()
+    @DeleteMapping("/{commentId}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void deleteCommentByAdmin(@Positive @RequestParam Long commentId) {
+    public void deleteCommentByAdmin(@PathVariable(value = "commentId") Long commentId) {
         commentService.deleteCommentByAdmin(commentId);
     }
 }
