@@ -37,9 +37,9 @@ public class PrivateCommentController {
         return commentService.saveComment(userId, dto);
     }
 
-    @DeleteMapping("/comments/{commentId}")
+    @DeleteMapping("/comments")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void deleteCommentAddedUser(@PathVariable(value = "commentId") Long commentId,
+    public void deleteCommentAddedUser(@RequestParam(value = "commentId") Long commentId,
                                               @PathVariable(value = "userId") Long userId) {
         commentService.deleteCommentAddedUser(commentId, userId);
     }
@@ -50,9 +50,9 @@ public class PrivateCommentController {
         return commentService.updateCommentByAuthor(userId, dto);
     }
 
-    @GetMapping("/comments/{commentId}")
+    @GetMapping("/comments")
     public FullCommentDto getCommentById(@PathVariable(value = "userId") Long userId,
-                                         @PathVariable(value = "commentId") Long commentId) {
+                                         @RequestParam(value = "commentId") Long commentId) {
         return commentService.getCommentById(commentId, userId);
     }
 
