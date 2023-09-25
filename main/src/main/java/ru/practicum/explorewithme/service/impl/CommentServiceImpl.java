@@ -64,11 +64,11 @@ public class CommentServiceImpl implements CommentService {
     }
 
     @Override
-    public void deleteCommentAddedCurrentUser(Long commentId, Long authorId) {
-        commentRepository.findCommentByIdAndAuthorId(commentId, authorId).orElseThrow(() ->
+    public void deleteCommentAddedUser(Long commentId, Long authorId) {
+        Comment comment = commentRepository.findCommentByIdAndAuthorId(commentId, authorId).orElseThrow(() ->
                 new NotFoundException(String.format("Comment %s by user not found", commentId)));
 
-        commentRepository.deleteById(commentId);
+        commentRepository.delete(comment);
     }
 
     @Override

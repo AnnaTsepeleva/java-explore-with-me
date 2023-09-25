@@ -1,6 +1,7 @@
 package ru.practicum.explorewithme.controller.comment;
 
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.validation.annotation.Validated;
@@ -25,6 +26,7 @@ import static ru.practicum.explorewithme.constant.Constants.PAGE_DEFAULT_SIZE;
 @RequiredArgsConstructor
 @Validated
 @ToLog
+@Slf4j
 public class PrivateCommentController {
     private final CommentService commentService;
 
@@ -37,9 +39,9 @@ public class PrivateCommentController {
 
     @DeleteMapping("/comments/{commentId}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void deleteCommentAddedCurrentUser(@PathVariable(value = "commentId") Long commentId,
+    public void deleteCommentAddedUser(@PathVariable(value = "commentId") Long commentId,
                                               @PathVariable(value = "userId") Long userId) {
-        commentService.deleteCommentAddedCurrentUser(commentId, userId);
+        commentService.deleteCommentAddedUser(commentId, userId);
     }
 
     @PatchMapping("/comments")

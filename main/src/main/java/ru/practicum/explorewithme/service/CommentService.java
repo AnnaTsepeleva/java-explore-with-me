@@ -13,7 +13,7 @@ public interface CommentService {
 
     void deleteCommentByAdmin(Long commentId);
 
-    void deleteCommentAddedCurrentUser(Long commentId, Long authorId);
+    void deleteCommentAddedUser(Long commentId, Long authorId);
 
     Collection<FullCommentDto> getCommentsByEventId(Long eventId, Pageable pageable);
 
