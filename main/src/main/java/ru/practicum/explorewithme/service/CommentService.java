@@ -22,4 +22,6 @@ public interface CommentService {
     List<FullCommentDto> getCommentsByAuthorId(Long userId, Pageable pageable);
 
     List<FullCommentDto> getUserCommentsByEventId(Long userId, Long eventId, Pageable page);
+
+    FullCommentDto getCommentById(Long commentId, Long userId);
 }

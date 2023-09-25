@@ -50,12 +50,18 @@ public class PrivateCommentController {
         return commentService.updateCommentByAuthor(commentId, userId, dto);
     }
 
+    @GetMapping("/comments/{commentId}")
+    public FullCommentDto getCommentById(@PathVariable(value = "userId") Long userId,
+                                         @PathVariable(value = "commentId") Long commentId) {
+        return commentService.getCommentById(commentId, userId);
+    }
+
     @GetMapping("/comments")
     public List<FullCommentDto> getCommentsByUser(@PathVariable(value = "userId") Long userId,
-                                                 @RequestParam(defaultValue = PAGE_DEFAULT_FROM)
-                                                 @PositiveOrZero Integer from,
-                                                 @RequestParam(defaultValue = PAGE_DEFAULT_SIZE)
-                                                 @Positive Integer size) {
+                                                  @RequestParam(defaultValue = PAGE_DEFAULT_FROM)
+                                                  @PositiveOrZero Integer from,
+                                                  @RequestParam(defaultValue = PAGE_DEFAULT_SIZE)
+                                                  @Positive Integer size) {
         Pageable page = new OffsetBasedPageRequest(from, size);
         return commentService.getCommentsByAuthorId(userId, page);
     }

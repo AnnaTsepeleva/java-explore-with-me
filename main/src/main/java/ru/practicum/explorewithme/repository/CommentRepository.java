@@ -28,12 +28,12 @@ public interface CommentRepository extends JpaRepository<Comment, Long> {
             "FROM Comment c " +
             "WHERE c.id =:commentId " +
             "AND c.author.id =:authorId ")
-    Optional<Comment> findCommentByIdAndAuthorId (@Param("commentId") Long eventId, @Param("authorId") Long authorId);
+    Optional<Comment> findCommentByIdAndAuthorId(@Param("commentId") Long eventId, @Param("authorId") Long authorId);
 
     @Query("select c" +
             " from Comment c" +
             " where c.author.id = :authorId")
-    List<Comment>getCommentsByAuthorId(@Param("authorId") Long userId, Pageable pageable);
+    List<Comment> getCommentsByAuthorId(@Param("authorId") Long userId, Pageable pageable);
 
     @Query("select c" +
             " from Comment c" +

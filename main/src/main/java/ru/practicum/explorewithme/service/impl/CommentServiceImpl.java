@@ -121,4 +121,11 @@ public class CommentServiceImpl implements CommentService {
                 .map(commentMapper::toFullCommentDto)
                 .collect(Collectors.toList());
     }
+
+    @Override
+    public FullCommentDto getCommentById(Long commentId, Long userId) {
+        Comment comment = commentRepository.findCommentByIdAndAuthorId(commentId, userId).orElseThrow(() ->
+                new NotFoundException(String.format("Comment %s by user not found", commentId)));
+        return commentMapper.toFullCommentDto(comment);
+    }
 }
