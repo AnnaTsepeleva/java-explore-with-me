@@ -22,7 +22,7 @@ import static ru.practicum.explorewithme.constant.Constants.PAGE_DEFAULT_FROM;
 import static ru.practicum.explorewithme.constant.Constants.PAGE_DEFAULT_SIZE;
 
 @RestController
-@RequestMapping("/users/{userId}")
+@RequestMapping("/users/{userId}/comments")
 @RequiredArgsConstructor
 @Validated
 @ToLog
@@ -30,33 +30,33 @@ import static ru.practicum.explorewithme.constant.Constants.PAGE_DEFAULT_SIZE;
 public class PrivateCommentController {
     private final CommentService commentService;
 
-    @PostMapping("/comments")
+    @PostMapping()
     @ResponseStatus(HttpStatus.CREATED)
     public FullCommentDto saveComment(@Positive @PathVariable(value = "userId") Long userId,
                                       @Valid @RequestBody NewCommentDto dto) {
         return commentService.saveComment(userId, dto);
     }
 
-    @DeleteMapping("/comments")
+    @DeleteMapping()
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void deleteCommentAddedUser(@RequestParam(value = "commentId") Long commentId,
-                                              @PathVariable(value = "userId") Long userId) {
+    public void deleteCommentAddedUser(@Positive @RequestParam(value = "commentId") Long commentId,
+                                       @Positive @PathVariable(value = "userId") Long userId) {
         commentService.deleteCommentAddedUser(commentId, userId);
     }
 
-    @PatchMapping("/comments")
+    @PatchMapping()
     public FullCommentDto updateCommentByAuthor(@Positive @PathVariable(value = "userId") Long userId,
                                                 @Valid @RequestBody UpdateCommentDto dto) {
         return commentService.updateCommentByAuthor(userId, dto);
     }
 
-    @GetMapping("/comments")
-    public FullCommentDto getCommentById(@PathVariable(value = "userId") Long userId,
-                                         @RequestParam(value = "commentId") Long commentId) {
+    @GetMapping()
+    public FullCommentDto getCommentById(@Positive @PathVariable(value = "userId") Long userId,
+                                         @Positive @RequestParam(value = "commentId") Long commentId) {
         return commentService.getCommentById(commentId, userId);
     }
 
-    @GetMapping("/comments")
+    @GetMapping()
     public List<FullCommentDto> getCommentsByUser(@PathVariable(value = "userId") Long userId,
                                                   @RequestParam(defaultValue = PAGE_DEFAULT_FROM)
                                                   @PositiveOrZero Integer from,
