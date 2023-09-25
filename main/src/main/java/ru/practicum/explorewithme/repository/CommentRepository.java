@@ -19,7 +19,7 @@ public interface CommentRepository extends JpaRepository<Comment, Long> {
     @Query("SELECT c " +
             "FROM Comment c " +
             "WHERE c.id =:commentId " +
-            "AND c.author.id =:authorId ")
+            "AND c.author.id =:authorId")
     Optional<Comment> findCommentByIdAndAuthorId(@Param("commentId") Long commentId, @Param("authorId") Long authorId);
 
     @Query("select c" +
