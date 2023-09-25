@@ -5,6 +5,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
+import ru.practicum.explorewithme.dtomain.comment.NewCommentDto;
 import ru.practicum.explorewithme.log.ToLog;
 import ru.practicum.explorewithme.dtomain.comment.FullCommentDto;
 import ru.practicum.explorewithme.dtomain.comment.UpdateCommentDto;
@@ -30,9 +31,8 @@ public class PrivateCommentController {
     @PostMapping("/comments/")
     @ResponseStatus(HttpStatus.CREATED)
     public FullCommentDto saveComment(@Positive @PathVariable(value = "userId") Long userId,
-                                      @Positive @RequestParam Long eventId,
-                                      @Valid @RequestBody UpdateCommentDto dto) {
-        return commentService.saveComment(userId, dto, eventId);
+                                      @Valid @RequestBody NewCommentDto dto) {
+        return commentService.saveComment(userId, dto);
     }
 
     @DeleteMapping("/comments/{commentId}")

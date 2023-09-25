@@ -5,6 +5,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import ru.practicum.explorewithme.dtomain.comment.FullCommentDto;
+import ru.practicum.explorewithme.dtomain.comment.NewCommentDto;
 import ru.practicum.explorewithme.dtomain.comment.UpdateCommentDto;
 import ru.practicum.explorewithme.model.Comment;
 import ru.practicum.explorewithme.model.Event;
@@ -31,16 +32,16 @@ public class CommentServiceImpl implements CommentService {
     private final CommentMapper commentMapper;
 
     @Override
-    public FullCommentDto saveComment(Long userId, UpdateCommentDto updateCommentDto, Long eventId) {
+    public FullCommentDto saveComment(Long userId, NewCommentDto newCommentDto) {
         User user = userRepository.findById(userId).orElseThrow(() ->
                 new NotFoundException(String.format("User %s not found", userId)));
 
-        Event event = eventRepository.findPublishedEventByEventId(eventId).orElseThrow(() ->
-                new NotFoundException(String.format("Event %s not found or not published now", eventId)));
+        Event event = eventRepository.findPublishedEventByEventId(newCommentDto.getEventId()).orElseThrow(() ->
+                new NotFoundException(String.format("Event %s not found or not published now", newCommentDto.getEventId())));
 
 
         Comment comment = Comment.builder()
-                .content(updateCommentDto.getContent())
+                .content(newCommentDto.getContent())
                 .created(LocalDateTime.now())
                 .event(event)
                 .author(user)
