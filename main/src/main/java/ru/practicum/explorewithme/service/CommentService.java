@@ -8,7 +8,7 @@ import java.util.Collection;
 import java.util.List;
 
 public interface CommentService {
-    FullCommentDto saveComment(Long userId, UpdateCommentDto newCommentDto, Long eventId);
+    FullCommentDto saveComment(Long userId, UpdateCommentDto updateCommentDto, Long eventId);
 
     void deleteCommentByAdmin(Long commentId);
 
