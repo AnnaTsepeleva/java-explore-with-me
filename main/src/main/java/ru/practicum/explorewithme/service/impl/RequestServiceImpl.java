@@ -3,6 +3,7 @@ package ru.practicum.explorewithme.service.impl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import ru.practicum.explorewithme.exceptions.AlreadyExistsException;
 import ru.practicum.explorewithme.exceptions.NotAvailableException;
 import ru.practicum.explorewithme.exceptions.NotFoundException;
 import ru.practicum.explorewithme.exceptions.ValidationException;
@@ -38,19 +39,16 @@ public class RequestServiceImpl implements RequestService {
 
     @Override
     public Request saveUserRequest(Long userId, Long eventId) {
+
+        if (requestRepository.existsByRequesterIdAndEventId(userId, eventId)) {
+            throw new AlreadyExistsException("Request from you already exists.");
+        }
+
         User requester = userRepository.findById(userId).orElseThrow(() ->
                 new NotFoundException(String.format("User %s not found", userId)));
 
         Event event = eventRepository.findById(eventId).orElseThrow(() ->
                 new NotFoundException(String.format("Event %s not found", eventId)));
-
-        for (Request requests: requestRepository.findByRequesterId(userId)) {
-            if (requests.getEvent().getId() != null) {
-                if (requests.getEvent().getId().equals(eventId)) {
-                    throw new NotAvailableException("Request from you already exists.");
-                }
-            }
-        }
 
         if (event.getInitiator().getId().equals(requester.getId())) {
             throw new NotAvailableException("Event initiator cannot add a request to participate in their event");

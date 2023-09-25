@@ -12,13 +12,13 @@ CREATE TABLE IF NOT EXISTS users
     id    BIGSERIAL PRIMARY KEY,
     name  VARCHAR(250) NOT NULL,
     email VARCHAR(254) NOT NULL UNIQUE
-    );
+);
 
 CREATE TABLE IF NOT EXISTS categories
 (
     id   BIGSERIAL PRIMARY KEY,
     name VARCHAR(50) NOT NULL UNIQUE
-    );
+);
 
 CREATE TABLE IF NOT EXISTS events
 (
@@ -36,7 +36,7 @@ CREATE TABLE IF NOT EXISTS events
     category_id        BIGINT REFERENCES categories (id) ON DELETE CASCADE,
     location_id        BIGINT REFERENCES locations (id) ON DELETE CASCADE,
     initiator_id       BIGINT REFERENCES users (id) ON DELETE CASCADE
-    );
+);
 
 CREATE TABLE IF NOT EXISTS requests
 (
@@ -46,18 +46,27 @@ CREATE TABLE IF NOT EXISTS requests
     event_id     BIGINT REFERENCES events (id) ON DELETE CASCADE,
     requester_id BIGINT REFERENCES users (id) ON DELETE CASCADE,
     CONSTRAINT uq_request UNIQUE (event_id, requester_id)
-    );
+);
 
 CREATE TABLE IF NOT EXISTS compilations
 (
     id     BIGSERIAL PRIMARY KEY,
     pinned BOOLEAN     NOT NULL,
     title  VARCHAR(50) NOT NULL
-    );
+);
 
 CREATE TABLE IF NOT EXISTS events_compilations
 (
     compilation_id BIGINT REFERENCES compilations (id),
     event_id       BIGINT REFERENCES events (id),
     PRIMARY KEY (compilation_id, event_id)
-    );
+);
+CREATE TABLE IF NOT EXISTS comments
+(
+    id        BIGSERIAL PRIMARY KEY,
+    content   VARCHAR(3000) NOT NULL,
+    created   TIMESTAMP     NOT NULL,
+    updated   TIMESTAMP,
+    event_id  BIGINT REFERENCES events (id) ON DELETE CASCADE,
+    author_id BIGINT REFERENCES users (id) ON DELETE CASCADE
+);
