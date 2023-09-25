@@ -50,14 +50,9 @@ public class PrivateCommentController {
         return commentService.updateCommentByAuthor(userId, dto);
     }
 
-    @GetMapping()
-    public FullCommentDto getCommentById(@Positive @PathVariable(value = "userId") Long userId,
-                                         @Positive @RequestParam(value = "commentId") Long commentId) {
-        return commentService.getCommentById(commentId, userId);
-    }
 
     @GetMapping()
-    public List<FullCommentDto> getCommentsByUser(@PathVariable(value = "userId") Long userId,
+    public List<FullCommentDto> getCommentsByUser(@PathVariable Long userId,
                                                   @RequestParam(defaultValue = PAGE_DEFAULT_FROM)
                                                   @PositiveOrZero Integer from,
                                                   @RequestParam(defaultValue = PAGE_DEFAULT_SIZE)
