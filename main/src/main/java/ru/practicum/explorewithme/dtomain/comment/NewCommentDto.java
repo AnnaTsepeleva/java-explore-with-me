@@ -5,6 +5,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.validator.constraints.Length;
+import ru.practicum.explorewithme.model.Event;
 
 import javax.validation.constraints.NotBlank;
 
@@ -16,4 +17,7 @@ public class NewCommentDto {
     @NotBlank
     @Length(max = 3000)
     private String content;
+
+    @NotBlank
+    private Event event;
 }

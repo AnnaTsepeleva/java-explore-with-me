@@ -10,9 +10,7 @@ import ru.practicum.explorewithme.dtomain.comment.UpdateCommentDto;
 import ru.practicum.explorewithme.model.Comment;
 import ru.practicum.explorewithme.model.Event;
 import ru.practicum.explorewithme.model.User;
-import ru.practicum.explorewithme.model.enums.EventStatus;
 import ru.practicum.explorewithme.exceptions.NotFoundException;
-import ru.practicum.explorewithme.exceptions.ValidationException;
 import ru.practicum.explorewithme.mapper.CommentMapper;
 import ru.practicum.explorewithme.repository.CommentRepository;
 import ru.practicum.explorewithme.repository.EventRepository;
@@ -38,12 +36,9 @@ public class CommentServiceImpl implements CommentService {
         User user = userRepository.findById(userId).orElseThrow(() ->
                 new NotFoundException(String.format("User %s not found", userId)));
 
-        Event event = eventRepository.findById(eventId).orElseThrow(() ->
-                new NotFoundException(String.format("Event %s not found", eventId)));
+        Event event = eventRepository.findPublishedEventByEventId(eventId).orElseThrow(() ->
+                new NotFoundException(String.format("Event %s not found or not published now", eventId)));
 
-        if (!event.getState().equals(EventStatus.PUBLISHED)) {
-            throw new ValidationException(String.format("Event %s isn't published", eventId));
-        }
 
         Comment comment = Comment.builder()
                 .content(newCommentDto.getContent())
@@ -70,15 +65,8 @@ public class CommentServiceImpl implements CommentService {
 
     @Override
     public void deleteCommentAddedCurrentUser(Long commentId, Long authorId) {
-        Comment comment = commentRepository.findById(commentId).orElseThrow(() ->
-                new NotFoundException(String.format("Comment %s not found", commentId)));
-
-        User author = userRepository.findById(authorId).orElseThrow(() ->
-                new NotFoundException(String.format("User %s not found", authorId)));
-
-        if (!comment.getAuthor().getId().equals(author.getId())) {
-            throw new ValidationException(String.format("User %s isn't author of comment %s", authorId, commentId));
-        }
+        commentRepository.findCommentByIdAndAuthorId(commentId, authorId).orElseThrow(() ->
+                new NotFoundException(String.format("Comment %s by user not found", commentId)));
 
         commentRepository.deleteById(commentId);
     }
@@ -98,21 +86,39 @@ public class CommentServiceImpl implements CommentService {
 
     @Override
     public FullCommentDto updateCommentByAuthor(Long commentId, Long authorId, UpdateCommentDto dto) {
-        Comment toUpdateComment = commentRepository.findById(commentId).orElseThrow(() ->
-                new NotFoundException(String.format("Comment %s not found", commentId)));
-
-        User author = userRepository.findById(authorId).orElseThrow(() ->
-                new NotFoundException(String.format("User %s not found", authorId)));
-
-        if (!toUpdateComment.getAuthor().getId().equals(author.getId())) {
-            throw new ValidationException(String.format("User %s isn't author of comment %s", authorId, commentId));
-        }
+        Comment toUpdateComment = commentRepository.findCommentByIdAndAuthorId(commentId, authorId).orElseThrow(() ->
+                new NotFoundException(String.format("Comment %s by user not found", commentId)));
 
         toUpdateComment.setContent(dto.getContent());
         toUpdateComment.setUpdated(LocalDateTime.now());
-
         Comment savedComment = commentRepository.save(toUpdateComment);
 
         return commentMapper.toFullCommentDto(savedComment);
+    }
+
+    @Override
+    public List<FullCommentDto> getCommentsByAuthorId(Long userId, Pageable pageable) {
+        List<Comment> comments = commentRepository.getCommentsByAuthorId(userId, pageable);
+
+        if (comments.isEmpty()) {
+            return Collections.emptyList();
+        }
+
+        return comments.stream()
+                .map(commentMapper::toFullCommentDto)
+                .collect(Collectors.toList());
+    }
+
+    @Override
+    public List<FullCommentDto> getUserCommentsByEventId(Long userId, Long eventId, Pageable pageable) {
+        List<Comment> comments = commentRepository.getUserCommentsByEventId(userId, eventId, pageable);
+
+        if (comments.isEmpty()) {
+            return Collections.emptyList();
+        }
+
+        return comments.stream()
+                .map(commentMapper::toFullCommentDto)
+                .collect(Collectors.toList());
     }
 }

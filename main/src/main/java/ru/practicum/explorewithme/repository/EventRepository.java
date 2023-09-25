@@ -61,4 +61,9 @@ public interface EventRepository extends JpaRepository<Event, Long> {
 
     @Query("SELECT MIN(e.publishedOn) FROM Event e WHERE e.id IN :eventsId")
     Optional<LocalDateTime> getStart(@Param("eventsId") Collection<Long> eventsId);
+
+    @Query ("select e from Event e " +
+            "where e.state = 'PUBLISHED' " +
+            " and e.id = :eventId")
+    Optional<Event> findPublishedEventByEventId (@Param("eventId") Long eventId);
 }

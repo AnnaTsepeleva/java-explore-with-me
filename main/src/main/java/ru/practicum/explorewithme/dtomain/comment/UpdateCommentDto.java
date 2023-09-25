@@ -14,6 +14,9 @@ import javax.validation.constraints.NotBlank;
 @Builder(toBuilder = true)
 public class UpdateCommentDto {
     @NotBlank
+    private Long id;
+
+    @NotBlank
     @Length(max = 3000)
     private String content;
 }
