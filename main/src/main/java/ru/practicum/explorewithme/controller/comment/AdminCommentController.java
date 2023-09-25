@@ -16,9 +16,9 @@ import ru.practicum.explorewithme.service.CommentService;
 public class AdminCommentController {
     private final CommentService commentService;
 
-    @DeleteMapping("/{commentId}")
+    @DeleteMapping
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void deleteCommentByAdmin(@PathVariable(value = "commentId") Long commentId) {
+    public void deleteCommentByAdmin(@RequestParam Long commentId) {
         commentService.deleteCommentByAdmin(commentId);
     }
 }
