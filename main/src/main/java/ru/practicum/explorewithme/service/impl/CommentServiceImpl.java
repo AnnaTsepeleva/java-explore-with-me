@@ -5,7 +5,6 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import ru.practicum.explorewithme.dtomain.comment.FullCommentDto;
-import ru.practicum.explorewithme.dtomain.comment.NewCommentDto;
 import ru.practicum.explorewithme.dtomain.comment.UpdateCommentDto;
 import ru.practicum.explorewithme.model.Comment;
 import ru.practicum.explorewithme.model.Event;
@@ -32,7 +31,7 @@ public class CommentServiceImpl implements CommentService {
     private final CommentMapper commentMapper;
 
     @Override
-    public FullCommentDto saveComment(Long userId, NewCommentDto newCommentDto, Long eventId) {
+    public FullCommentDto saveComment(Long userId, UpdateCommentDto newCommentDto, Long eventId) {
         User user = userRepository.findById(userId).orElseThrow(() ->
                 new NotFoundException(String.format("User %s not found", userId)));
 

@@ -7,7 +7,6 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import ru.practicum.explorewithme.log.ToLog;
 import ru.practicum.explorewithme.dtomain.comment.FullCommentDto;
-import ru.practicum.explorewithme.dtomain.comment.NewCommentDto;
 import ru.practicum.explorewithme.dtomain.comment.UpdateCommentDto;
 import ru.practicum.explorewithme.service.CommentService;
 import ru.practicum.explorewithme.util.OffsetBasedPageRequest;
@@ -32,7 +31,7 @@ public class PrivateCommentController {
     @ResponseStatus(HttpStatus.CREATED)
     public FullCommentDto saveComment(@Positive @PathVariable(value = "userId") Long userId,
                                       @Positive @RequestParam Long eventId,
-                                      @Valid @RequestBody NewCommentDto dto) {
+                                      @Valid @RequestBody UpdateCommentDto dto) {
         return commentService.saveComment(userId, dto, eventId);
     }
 
