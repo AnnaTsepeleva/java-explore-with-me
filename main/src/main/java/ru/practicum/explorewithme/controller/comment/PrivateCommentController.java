@@ -27,7 +27,7 @@ import static ru.practicum.explorewithme.constant.Constants.PAGE_DEFAULT_SIZE;
 public class PrivateCommentController {
     private final CommentService commentService;
 
-    @PostMapping("/comments")
+    @PostMapping("/comments/")
     @ResponseStatus(HttpStatus.CREATED)
     public FullCommentDto saveComment(@Positive @PathVariable(value = "userId") Long userId,
                                       @Positive @RequestParam Long eventId,
@@ -35,9 +35,9 @@ public class PrivateCommentController {
         return commentService.saveComment(userId, dto, eventId);
     }
 
-    @DeleteMapping("/comments")
+    @DeleteMapping("/comments/{commentId}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void deleteCommentAddedCurrentUser(@Positive @RequestParam Long commentId,
+    public void deleteCommentAddedCurrentUser(@Positive @PathVariable(value = "commentId") Long commentId,
                                               @Positive @PathVariable(value = "userId") Long userId) {
         commentService.deleteCommentAddedCurrentUser(commentId, userId);
     }
