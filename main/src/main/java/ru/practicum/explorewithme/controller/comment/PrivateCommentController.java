@@ -42,11 +42,10 @@ public class PrivateCommentController {
         commentService.deleteCommentAddedCurrentUser(commentId, userId);
     }
 
-    @PatchMapping("/comments/{commentId}")
-    public FullCommentDto updateCommentByAuthor(@Positive @PathVariable(value = "commentId") Long commentId,
-                                                @Positive @PathVariable(value = "userId") Long userId,
+    @PatchMapping("/comments")
+    public FullCommentDto updateCommentByAuthor(@Positive @PathVariable(value = "userId") Long userId,
                                                 @Valid @RequestBody UpdateCommentDto dto) {
-        return commentService.updateCommentByAuthor(commentId, userId, dto);
+        return commentService.updateCommentByAuthor(userId, dto);
     }
 
     @GetMapping("/comments/{commentId}")

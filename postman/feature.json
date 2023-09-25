@@ -75,7 +75,7 @@
         "header": [],
         "body": {
           "mode": "raw",
-          "raw": "{\r\n    \"content\": \"text\"\r\n}",
+          "raw": "{\r\n    \"content\": \"text2\",\r\n   \"eventId\": \"2\"\n}",
           "options": {
             "raw": {
               "language": "json"
@@ -83,7 +83,7 @@
           }
         },
         "url": {
-          "raw": "http://localhost:8080/users/:userId/comments?eventId=2",
+          "raw": "http://localhost:8080/users/:userId/comments",
           "protocol": "http",
           "host": [
             "localhost"
@@ -93,12 +93,6 @@
             "users",
             ":userId",
             "comments"
-          ],
-          "query": [
-            {
-              "key": "eventId",
-              "value": "2"
-            }
           ],
           "variable": [
             {
@@ -130,7 +124,7 @@
         "header": [],
         "body": {
           "mode": "raw",
-          "raw": "{\r\n    \"content\": \"updated\"\r\n}",
+          "raw": "{\r\n    \"id\": \"1\",\r\n   \"content\": \"update\"\n}",
           "options": {
             "raw": {
               "language": "json"
@@ -138,7 +132,7 @@
           }
         },
         "url": {
-          "raw": "http://localhost:8080/users/:userId/comments?commentId=1",
+          "raw": "http://localhost:8080/users/:userId/comments",
           "protocol": "http",
           "host": [
             "localhost"
@@ -148,12 +142,6 @@
             "users",
             ":userId",
             "comments"
-          ],
-          "query": [
-            {
-              "key": "commentId",
-              "value": "1"
-            }
           ],
           "variable": [
             {

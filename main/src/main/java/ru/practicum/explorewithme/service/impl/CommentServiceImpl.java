@@ -85,9 +85,9 @@ public class CommentServiceImpl implements CommentService {
     }
 
     @Override
-    public FullCommentDto updateCommentByAuthor(Long commentId, Long authorId, UpdateCommentDto dto) {
-        Comment toUpdateComment = commentRepository.findCommentByIdAndAuthorId(commentId, authorId).orElseThrow(() ->
-                new NotFoundException(String.format("Comment %s by user not found", commentId)));
+    public FullCommentDto updateCommentByAuthor(Long authorId, UpdateCommentDto dto) {
+        Comment toUpdateComment = commentRepository.findCommentByIdAndAuthorId(dto.getId(), authorId).orElseThrow(() ->
+                new NotFoundException(String.format("Comment %s by user not found", dto.getId())));
 
         toUpdateComment.setContent(dto.getContent());
         toUpdateComment.setUpdated(LocalDateTime.now());

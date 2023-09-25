@@ -17,7 +17,7 @@ public interface CommentService {
 
     Collection<FullCommentDto> getCommentsByEventId(Long eventId, Pageable pageable);
 
-    FullCommentDto updateCommentByAuthor(Long commentId, Long authorId, UpdateCommentDto dto);
+    FullCommentDto updateCommentByAuthor(Long authorId, UpdateCommentDto dto);
 
     List<FullCommentDto> getCommentsByAuthorId(Long userId, Pageable pageable);
 
