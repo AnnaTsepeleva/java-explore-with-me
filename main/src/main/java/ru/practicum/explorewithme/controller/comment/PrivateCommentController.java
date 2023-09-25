@@ -38,13 +38,13 @@ public class PrivateCommentController {
 
     @DeleteMapping("/comments/{commentId}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void deleteCommentAddedCurrentUser(@Positive @RequestParam(value = "commentId") Long commentId,
+    public void deleteCommentAddedCurrentUser(@Positive @PathVariable(value = "commentId") Long commentId,
                                               @Positive @PathVariable(value = "userId") Long userId) {
         commentService.deleteCommentAddedCurrentUser(commentId, userId);
     }
 
     @PatchMapping("/comments/{commentId}")
-    public FullCommentDto updateCommentByAuthor(@Positive @RequestParam(value = "commentId") Long commentId,
+    public FullCommentDto updateCommentByAuthor(@Positive @PathVariable(value = "commentId") Long commentId,
                                                 @Positive @PathVariable(value = "userId") Long userId,
                                                 @Valid @RequestBody UpdateCommentDto dto) {
         return commentService.updateCommentByAuthor(commentId, userId, dto);
