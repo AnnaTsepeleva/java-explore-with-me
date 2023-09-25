@@ -65,5 +65,5 @@ public interface EventRepository extends JpaRepository<Event, Long> {
     @Query ("select e from Event e " +
             "where e.state = 'PUBLISHED' " +
             " and e.id = :eventId")
-    Optional<Event> findPublishedEventByEventId (@Param("eventId") Long eventId);
+    Optional<Event> findPublishedEventByEventId(@Param("eventId") Long eventId);
 }
