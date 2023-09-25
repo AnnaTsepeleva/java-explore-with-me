@@ -28,7 +28,7 @@ import static ru.practicum.explorewithme.constant.Constants.PAGE_DEFAULT_SIZE;
 public class PrivateCommentController {
     private final CommentService commentService;
 
-    @PostMapping("/comments/")
+    @PostMapping("/comments")
     @ResponseStatus(HttpStatus.CREATED)
     public FullCommentDto saveComment(@Positive @PathVariable(value = "userId") Long userId,
                                       @Valid @RequestBody NewCommentDto dto) {
