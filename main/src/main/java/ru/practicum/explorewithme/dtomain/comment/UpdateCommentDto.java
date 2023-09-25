@@ -4,9 +4,10 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.hibernate.validator.constraints.Length;
+
 
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
 
 @Data
 @AllArgsConstructor
@@ -14,9 +15,6 @@ import javax.validation.constraints.NotBlank;
 @Builder(toBuilder = true)
 public class UpdateCommentDto {
     @NotBlank
-    private Long id;
-
-    @NotBlank
-    @Length(max = 3000)
+    @Size(max = 3000)
     private String content;
 }
