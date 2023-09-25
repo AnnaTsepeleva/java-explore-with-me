@@ -18,12 +18,6 @@ public interface CommentRepository extends JpaRepository<Comment, Long> {
             " where c.event.id = :eventId")
     List<Comment> getCommentsByEventId(@Param("eventId") Long eventId, Pageable pageable);
 
-    @Query("SELECT c.event.id AS eventId, COUNT(c.id) AS commentCount " +
-            "FROM Comment c " +
-            "WHERE c.event.id IN :eventIds " +
-            "GROUP BY c.event.id")
-    List<Map<Long, Long>> countCommentsByEventIdsIn(@Param("eventIds") Collection<Long> eventIds);
-
     @Query("SELECT c " +
             "FROM Comment c " +
             "WHERE c.id =:commentId " +
@@ -39,5 +33,5 @@ public interface CommentRepository extends JpaRepository<Comment, Long> {
             " from Comment c" +
             " where c.author.id = :authorId" +
             " and c.event.id = :eventId")
-    List<Comment> getUserCommentsByEventId(@Param("eventId") Long userId, @Param("authorId") Long eventId, Pageable pageable);
+    List<Comment> getUserCommentsByEventId(@Param("authorId") Long userId, @Param("eventId") Long eventId, Pageable pageable);
 }

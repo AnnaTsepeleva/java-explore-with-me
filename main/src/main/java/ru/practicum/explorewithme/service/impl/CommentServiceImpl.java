@@ -31,7 +31,7 @@ public class CommentServiceImpl implements CommentService {
     private final CommentMapper commentMapper;
 
     @Override
-    public FullCommentDto saveComment(Long userId, UpdateCommentDto newCommentDto, Long eventId) {
+    public FullCommentDto saveComment(Long userId, UpdateCommentDto updateCommentDto, Long eventId) {
         User user = userRepository.findById(userId).orElseThrow(() ->
                 new NotFoundException(String.format("User %s not found", userId)));
 
@@ -40,7 +40,7 @@ public class CommentServiceImpl implements CommentService {
 
 
         Comment comment = Comment.builder()
-                .content(newCommentDto.getContent())
+                .content(updateCommentDto.getContent())
                 .created(LocalDateTime.now())
                 .event(event)
                 .author(user)
