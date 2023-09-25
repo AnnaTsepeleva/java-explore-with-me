@@ -28,24 +28,24 @@ import static ru.practicum.explorewithme.constant.Constants.PAGE_DEFAULT_SIZE;
 public class PrivateCommentController {
     private final CommentService commentService;
 
-    @PostMapping
+    @PostMapping("/comments")
     @ResponseStatus(HttpStatus.CREATED)
-    public FullCommentDto saveComment(@Positive @PathVariable Long userId,
+    public FullCommentDto saveComment(@Positive @PathVariable(value = "userId") Long userId,
                                       @Positive @RequestParam Long eventId,
                                       @Valid @RequestBody NewCommentDto dto) {
         return commentService.saveComment(userId, dto, eventId);
     }
 
-    @DeleteMapping()
+    @DeleteMapping("/comments/{commentId}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void deleteCommentAddedCurrentUser(@Positive @RequestParam Long commentId,
-                                              @Positive @PathVariable Long userId) {
+    public void deleteCommentAddedCurrentUser(@Positive @RequestParam(value = "commentId") Long commentId,
+                                              @Positive @PathVariable(value = "userId") Long userId) {
         commentService.deleteCommentAddedCurrentUser(commentId, userId);
     }
 
-    @PatchMapping
-    public FullCommentDto updateCommentByAuthor(@Positive @RequestParam Long commentId,
-                                                @Positive @PathVariable Long userId,
+    @PatchMapping("/comments/{commentId}")
+    public FullCommentDto updateCommentByAuthor(@Positive @RequestParam(value = "commentId") Long commentId,
+                                                @Positive @PathVariable(value = "userId") Long userId,
                                                 @Valid @RequestBody UpdateCommentDto dto) {
         return commentService.updateCommentByAuthor(commentId, userId, dto);
     }
